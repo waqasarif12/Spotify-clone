@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="<%= assetPath('css/user_sign_in.css') %>" />
+
+<div class="login">
+	<h1 class="login__heading"><%= title %></h1>
+	<form id="login__form" action="/users/create-session" method="post">
+		<input
+			type="email"
+			name="email"
+			placeholder="Enter Email"
+			autocomplete="off"
+			required
+		/>
+		<input
+			type="password"
+			name="password"
+			placeholder="Enter Password"
+			autocomplete="off"
+			required
+		/>
+		<button class="login__btn" type="submit">Login</button>
+	</form>
+	<div class="links">
+		<a href="/users/signup"> Register </a>&ensp;|&ensp;<a href="/"> Home </a>
+	</div>
+	<a href="/forgot-password"> Forgot Password? </a>
+</div>

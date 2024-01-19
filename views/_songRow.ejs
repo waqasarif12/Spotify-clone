@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="<%= assetPath('css/_songRow.css') %>" />
+<script defer src="<%= assetPath('js/songs_list.js') %>"></script>
+
+<!-- Existing Playlists -->
+<% try{ for(let song of playlist.existingPlaylistTrackRelations){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.track.thumbnail %>"
+	data-song-name="<%= song.track.name %>"
+	data-song-artist="<%= song.track.artist.name %>"
+	data-song-url="<%= song.track.url %>"
+>
+	<img
+		src="<%= song.track.thumbnail %>"
+		alt="<%= song.track.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.track.name %></h1>
+		<p><%= song.track.artist.name %></p>
+	</div>
+	<p><%= song.track.album.name %></p>
+	<% try{ let likes = []; likes = song.track.likes.filter(like =>
+	(like.user._id.toString() === locals.user._id.toString())); if(likes.length >
+	0){ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #1ed15e"
+		data-likes="<%= song.track.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.track.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }else{ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #fff"
+		data-likes="<%= song.track.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.track.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }}catch(err){} %>
+	<p><%= song.track.duration %></p>
+</div>
+<% }}catch{} %>
+
+<!-- Playlists -->
+<% try{ for(let song of playlist.playlistTrackRelations){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.track.thumbnail %>"
+	data-song-name="<%= song.track.name %>"
+	data-song-artist="<%= song.track.artist.name %>"
+	data-song-url="<%= song.track.url %>"
+>
+	<img
+		src="<%= song.track.thumbnail %>"
+		alt="<%= song.track.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.track.name %></h1>
+		<p><%= song.track.artist.name %></p>
+	</div>
+	<p><%= song.track.album.name %></p>
+	<% try{ let likes = []; likes = song.track.likes.filter(like =>
+	(like.user._id.toString() === locals.user._id.toString())); if(likes.length >
+	0){ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #1ed15e"
+		data-likes="<%= song.track.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.track.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }else{ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #fff"
+		data-likes="<%= song.track.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.track.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }}catch(err){} %>
+	<p><%= song.track.duration %></p>
+</div>
+<% }}catch{} %>
+
+<!-- Artists -->
+<% try{ for(let song of artist.tracks){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.thumbnail %>"
+	data-song-name="<%= song.name %>"
+	data-song-artist="<%= song.artist.name %>"
+	data-song-url="<%= song.url %>"
+>
+	<img
+		src="<%= song.thumbnail %>"
+		alt="<%= song.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.name %></h1>
+		<p><%= song.artist.name %></p>
+	</div>
+	<p><%= song.album.name %></p>
+	<% try{ let likes = []; likes = song.likes.filter(like =>
+	(like.user._id.toString() === locals.user._id.toString())); if(likes.length >
+	0){ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #1ed15e"
+		data-likes="<%= song.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }else{ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #fff"
+		data-likes="<%= song.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }}catch(err){} %>
+	<p><%= song.duration %></p>
+</div>
+<% }}catch{} %>
+
+<!-- Albums -->
+<% try{ for(let song of album.tracks){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.thumbnail %>"
+	data-song-name="<%= song.name %>"
+	data-song-artist="<%= song.artist.name %>"
+	data-song-url="<%= song.url %>"
+>
+	<img
+		src="<%= song.thumbnail %>"
+		alt="<%= song.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.name %></h1>
+		<p><%= song.artist.name %></p>
+	</div>
+	<p><%= song.album.name %></p>
+	<% try{ let likes = []; likes = song.likes.filter(like =>
+	(like.user._id.toString() === locals.user._id.toString())); if(likes.length >
+	0){ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #1ed15e"
+		data-likes="<%= song.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }else{ %>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #fff"
+		data-likes="<%= song.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.id %>&type=Track"
+		data-type="Track"
+	></i>
+	<% }}catch(err){} %>
+	<p><%= song.duration %></p>
+</div>
+<% }}catch{} %>
+
+<!-- Liked Songs -->
+<% try{ for(let song of likedTracks){ song = song.likeable %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.thumbnail %>"
+	data-song-name="<%= song.name %>"
+	data-song-artist="<%= song.artist.name %>"
+	data-song-url="<%= song.url %>"
+>
+	<img
+		src="<%= song.thumbnail %>"
+		alt="<%= song.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.name %></h1>
+		<p><%= song.artist.name %></p>
+	</div>
+	<p><%= song.album.name %></p>
+	<i
+		class="fa-solid fa-heart toggle-like-button"
+		style="color: #1ed15e"
+		data-likes="<%= song.likes.length %>"
+		data-url="/likes/toggle/?id=<%= song.id %>&type=Track"
+		data-type="Track"
+		data-liked="true"
+	></i>
+	<p><%= song.duration %></p>
+</div>
+<% }}catch{} %>

@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="<%= assetPath('css/_body.css') %>" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%>
+	<template id="no-results">
+		<h3>No results found</h3>
+	</template>
+	<template id="song-results">
+		<div class="song playable-tracks">
+			<div class="album"></div>
+			<div class="songInfo">
+				<h4></h4>
+				<p></p>
+			</div>
+		</div>
+	</template>
+	<template id="album-results">
+		<div class="song">
+			<div class="album"></div>
+			<div class="songInfo">
+				<h4></h4>
+			</div>
+		</div>
+	</template>
+	<template id="playlist-results">
+		<div class="song">
+			<div class="album">
+				<img src="" alt="" />
+			</div>
+			<div class="songInfo">
+				<h4></h4>
+			</div>
+		</div>
+	</template>
+	<template id="artist-results">
+		<div class="artist">
+			<div class="artistImage"></div>
+			<div class="artistInfo">
+				<h4></h4>
+			</div>
+		</div>
+	</template>
+	<template id="user-results">
+		<div class="artist">
+			<div class="artistImage"><img src="" alt="" /></div>
+			<div class="artistInfo">
+				<h4></h4>
+			</div>
+		</div>
+	</template>
+
+	<div class="search">
+		<h1>Songs</h1>
+		<div class="songs">
+			<h3>No results found</h3>
+		</div>
+
+		<h1>Albums</h1>
+		<div class="albums">
+			<h3>No results found</h3>
+		</div>
+
+		<h1>Playlists</h1>
+		<div class="playlists">
+			<h3>No results found</h3>
+		</div>
+
+		<h1>Artists</h1>
+		<div class="artists">
+			<h3>No results found</h3>
+		</div>
+
+		<h1>Profiles</h1>
+		<div class="artists users">
+			<h3>No results found</h3>
+		</div>
+	</div>
+</div>

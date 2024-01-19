@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="<%= assetPath('css/_body.css') %>" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%> <% if(profile_user.id == locals.user.id){ %>
+	<div class="profile">
+		<form
+			action="/users/update/<%= profile_user.id %>"
+			method="post"
+			enctype="multipart/form-data"
+		>
+			<div class="body__info">
+				<div class="userAvatar">
+					<img
+						src="<%= profile_user.avatar %>"
+						alt="<%= profile_user.name %>"
+					/>
+					<input
+						type="file"
+						name="avatar"
+						class="profilePicture"
+						accept="image/png, image/gif, image/jpeg, image/jpg"
+					/>
+				</div>
+				<div class="body__infoText">
+					<h1>Name</h1>
+					<input
+						type="text"
+						name="name"
+						class="nameInput"
+						value="<%= profile_user.name %>"
+						autocomplete="off"
+						required
+					/>
+					<h1>Email</h1>
+					<input
+						type="email"
+						name="email"
+						class="emailInput"
+						value="<%= profile_user.email %>"
+						autocomplete="off"
+						required
+					/>
+					<h1>Password</h1>
+					<input
+						type="password"
+						name="password"
+						class="passwordInput"
+						value="<%= profile_user.password %>"
+						autocomplete="off"
+						required
+					/>
+				</div>
+				<button type="submit">UPDATE</button>
+			</div>
+		</form>
+		<div class="following">
+			<h1>Following</h1>
+			<% for(let user of following){ %>
+			<div
+				class="person"
+				onclick="window.location.href='/users/profile/<%= user.id %>';"
+			>
+				<div class="image">
+					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
+				</div>
+				<h3><%= user.name %></h3>
+			</div>
+			<% } %>
+		</div>
+		<div class="followers">
+			<h1>Followers</h1>
+			<% for(let user of followers){ %>
+			<div
+				class="person"
+				onclick="window.location.href='/users/profile/<%= user.id %>';"
+			>
+				<div class="image">
+					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
+				</div>
+				<h3><%= user.name %></h3>
+			</div>
+			<% } %>
+		</div>
+	</div>
+	<% } else { %>
+	<div class="profile">
+		<div class="body__info">
+			<div class="userAvatar">
+				<img
+					src="<%= profile_user.avatar %>"
+					alt="<%= profile_user.name %>"
+				/>
+			</div>
+			<div class="body__infoText">
+				<h1>Name</h1>
+				<h2><%= profile_user.name %></h2>
+				<h1>Email</h1>
+				<h2><%= profile_user.email %></h2>
+			</div>
+			<% if(iAmFollowing){ %>
+			<button
+				class="follow_btn"
+				data-url="/friends/toggle/<%= profile_user._id %>"
+				style="width: 40%"
+			>
+				Unfollow
+			</button>
+			<% }else{ %>
+			<button
+				class="follow_btn"
+				style="width: 40%"
+				data-url="/friends/toggle/<%= profile_user._id %>"
+			>
+				Follow
+			</button>
+			<% } %>
+		</div>
+	</div>
+	<% } %>
+</div>

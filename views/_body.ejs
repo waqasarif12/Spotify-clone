@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="<%= assetPath('css/_body.css') %>" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%>
+	<div class="home">
+		<h1>Trending Songs</h1>
+		<div class="home__trendingSongs">
+			<% try{ for(let track of trendingTracks){ %>
+			<div
+				class="song playable-tracks"
+				data-song-thumbnail="<%= track.thumbnail %>"
+				data-song-name="<%= track.name %>"
+				data-song-artist="<%= track.artist.name %>"
+				data-song-url="<%= track.url %>"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= track.thumbnail %>')"
+				></div>
+				<div class="songInfo">
+					<h4><%= track.name %></h4>
+					<p><%= track.artist.name %></p>
+				</div>
+			</div>
+			<% }}catch(err){} %>
+		</div>
+
+		<h1>Albums</h1>
+		<div class="home__albums">
+			<% for(let album of all_albums){ %>
+			<div
+				class="song"
+				onclick="window.location.href='/albums/<%= album._id %>';"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= album.thumbnail %>')"
+				></div>
+			</div>
+			<% } %>
+		</div>
+
+		<h1>New Releases</h1>
+		<div class="home__newReleases">
+			<% for(let track of new_releases){ %>
+			<div
+				class="song playable-tracks"
+				data-song-thumbnail="<%= track.thumbnail %>"
+				data-song-name="<%= track.name %>"
+				data-song-artist="<%= track.artist.name %>"
+				data-song-url="<%= track.url %>"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= track.thumbnail %>')"
+				></div>
+				<div class="songInfo">
+					<h4><%= track.name %></h4>
+					<p><%= track.artist.name %></p>
+				</div>
+			</div>
+			<% } %>
+		</div>
+
+		<h1>Artists</h1>
+		<div class="home__artists">
+			<% for(let artist of all_artists){ %>
+			<div
+				class="artist"
+				onclick="window.location.href='/artists/<%= artist._id %>';"
+			>
+				<div
+					class="artistImage"
+					style="background-image: url('<%= artist.thumbnail %>')"
+				></div>
+				<div class="artistInfo">
+					<h4><%= artist.name %></h4>
+				</div>
+			</div>
+			<% } %>
+		</div>
+
+		<h1>Playlists</h1>
+		<div class="home__playlists playlist_click">
+			<% for(let playlist of all_existing_playlists){ %>
+			<div
+				class="playlist playlist_click"
+				onclick="window.location.href='/playlists/<%= playlist._id %>';"
+			>
+				<div
+					class="album playlist_click"
+					style="background-image: url('<%= playlist.thumbnail %>')"
+				></div>
+			</div>
+			<% } %>
+		</div>
+
+		<h1>Genres & Mood</h1>
+		<div class="home__genres">
+			<% for(let genre of current_user.genreUserRelations){ %>
+			<div class="genre">
+				<div
+					class="image"
+					style="background-image: url('<%= genre.genre.thumbnail %>')"
+				>
+					<h1><%= genre.genre.name %></h1>
+				</div>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="<%= assetPath('css/_body.css') %>" />
+<script defer src="<%= assetPath('js/toggleLike.js') %>"></script>
+
+<div class="body">
+	<%- include('_header.ejs'); -%>
+	<div class="playlist">
+		<div class="body__info">
+			<img src="<%= album.thumbnail %>" alt="Album Banner" />
+			<div class="body__infoText">
+				<strong>Album</strong>
+				<h2><%= album.name %></h2>
+				<div class="user_info">
+					<img src="<%= locals.user.avatar %>" alt="User Image" />
+					<p
+						onclick="window.location.href='/users/profile/<%= locals.user.id %>';"
+					>
+						<%= locals.user.name %>
+					</p>
+					<p>•</p>
+					<p><%= album.tracks.length %> Songs</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="body__songs">
+			<div class="body__icons">
+				<i class="fa-solid fa-circle-play body__shuffle"></i>
+				<% if(albumLikes.length > 0){ %>
+				<i
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #1ed15e"
+					data-likes="<%= album.likes.length %>"
+					data-url="/likes/toggle/?id=<%= album._id %>&type=Album"
+					data-type="Album"
+				></i>
+				<% }else{ %>
+				<i
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #fff"
+					data-likes="<%= album.likes.length %>"
+					data-url="/likes/toggle/?id=<%= album._id %>&type=Album"
+					data-type="Album"
+				></i>
+				<% } %>
+				<i class="fa-solid fa-ellipsis"></i>
+			</div>
+			<%- include('_songRow.ejs'); -%>
+		</div>
+	</div>
+</div>
